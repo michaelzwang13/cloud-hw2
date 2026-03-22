@@ -54,7 +54,7 @@ def done ():
 		todos.update_one({"_id":ObjectId(id)}, {"$set": {"done":"yes"}})
 	redir=redirect_url()	# Re-directed URL i.e. PREVIOUS URL from where it came into this one
 
-#	if(str(redir)=="http://localhost:5000/search"):
+#	if(str(redir)=="http://localhost:5001/search"):
 #		redir+="?key="+id+"&refer="+refer
 
 	return redirect(redir)
@@ -121,8 +121,7 @@ def about():
 
 if __name__ == "__main__":
 	env = os.environ.get('FLASK_ENV', 'development')
-	port = int(os.environ.get('PORT', 5000))
+	port = int(os.environ.get('PORT', 5001))
 	debug = False if env == 'production' else True
-	app.run(debug=True)
-	app.run(port=port, debug=debug)
+	app.run(host='0.0.0.0', port=port, debug=debug)
 	# Careful with the debug mode..
