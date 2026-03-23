@@ -13,6 +13,12 @@ todos = db.todo #Select the collection
 app = Flask(__name__)
 title = "TODO with Flask"
 heading = "ToDo Reminder"
+
+@app.route("/healthz")
+def healthz():
+    if os.path.exists("/tmp/unhealthy"):
+        return "Service Unavailable", 500
+    return "OK", 200
 #modify=ObjectId()
 
 def redirect_url():
